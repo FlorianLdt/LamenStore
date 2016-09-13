@@ -11,6 +11,7 @@
 		17F12BEB1D836B6E00586CEA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F12BEA1D836B6E00586CEA /* ViewController.swift */; };
 		17F12BF01D836B6E00586CEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17F12BEF1D836B6E00586CEA /* Assets.xcassets */; };
 		17F12BF31D836B6E00586CEA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17F12BF11D836B6E00586CEA /* LaunchScreen.storyboard */; };
+		17F12BFB1D837ACB00586CEA /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F12BFA1D837ACA00586CEA /* CategoryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		17F12BEF1D836B6E00586CEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17F12BF21D836B6E00586CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17F12BF41D836B6E00586CEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17F12BFA1D837ACA00586CEA /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				17F12BEF1D836B6E00586CEA /* Assets.xcassets */,
 				17F12BF11D836B6E00586CEA /* LaunchScreen.storyboard */,
 				17F12BF41D836B6E00586CEA /* Info.plist */,
+				17F12BFA1D837ACA00586CEA /* CategoryCell.swift */,
 			);
 			path = LamenStore;
 			sourceTree = "<group>";
@@ -134,6 +137,7 @@
 			files = (
 				17F12BEB1D836B6E00586CEA /* ViewController.swift in Sources */,
 				17F12BE91D836B6E00586CEA /* AppDelegate.swift in Sources */,
+				17F12BFB1D837ACB00586CEA /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,10 +244,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = LamenStore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.lamen.LamenStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -251,6 +257,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = LamenStore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.lamen.LamenStore;
@@ -277,6 +284,7 @@
 				17F12BF91D836B6E00586CEA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
