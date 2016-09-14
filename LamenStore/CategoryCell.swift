@@ -10,6 +10,15 @@ import UIKit
 
 class CategoryCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    var appCategory: AppCategory? {
+        didSet {
+            
+            if let name = appCategory?.name {
+                nameLabel.text = name
+            }
+        }
+    }
+    
     let cellId = "appCellId"
     
     override init(frame: CGRect) {
@@ -68,11 +77,16 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDelegate, UICollection
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        if let count = appCategory?.apps?.count {
+            return count
+        }
+        return 0
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCellWithReuseIdentifier(cellId, forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellId, forIndexPath: indexPath) as! AppCell
+        cell.app = appCategory?.apps?[indexPath.item]
+        return cell
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -87,6 +101,40 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDelegate, UICollection
 
 class AppCell: UICollectionViewCell {
     
+    var app: App? {
+        didSet{
+            if let name = app?.name {
+                nameLabel.text = name
+                
+                let rect = NSString(string: name).boundingRectWithSize(CGSizeMake(frame.width, 1000), options: NSStringDrawingOptions.UsesFontLeading.union(NSStringDrawingOptions.UsesLineFragmentOrigin), attributes: [NSFontAttributeName: UIFont.systemFontOfSize(14)], context: nil)
+                
+                if rect.height > 20 {
+                    categoryLabel.frame = CGRectMake(0, frame.width + 38, frame.width, 20)
+                    priceLabel.frame = CGRectMake(0, frame.width + 56, frame.width, 20)
+                } else {
+                    categoryLabel.frame = CGRectMake(0, frame.width + 22, frame.width, 20)
+                    priceLabel.frame = CGRectMake(0, frame.width + 40, frame.width, 20)
+                }
+                
+                nameLabel.frame = CGRectMake(0, frame.width + 5, frame.width, 40)
+                nameLabel.sizeToFit()
+            }
+            
+            categoryLabel.text = app?.category
+            
+            if let price = app?.price {
+                priceLabel.text = "$\(price)"
+            } else {
+                priceLabel.text = ""
+            }
+            
+            if let imageName = app?.imageName {
+                imageView.image = UIImage(named: imageName)
+            }
+        }
+    }
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -98,7 +146,6 @@ class AppCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "dbapp")
         iv.contentMode = .ScaleAspectFill
         iv.layer.cornerRadius = 16
         iv.layer.masksToBounds = true
@@ -107,7 +154,6 @@ class AppCell: UICollectionViewCell {
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Dragon Ball Xenoverse 3"
         label.numberOfLines = 2
         label.font = UIFont.systemFontOfSize(13)
         return label
@@ -115,7 +161,6 @@ class AppCell: UICollectionViewCell {
     
     let categoryLabel: UILabel = {
         let label = UILabel()
-        label.text = "Entertainment"
         label.font = UIFont.systemFontOfSize(13)
         label.textColor = UIColor.darkGrayColor()
         return label
@@ -123,7 +168,6 @@ class AppCell: UICollectionViewCell {
     
     let priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "$0.99"
         label.font = UIFont.systemFontOfSize(13)
         label.textColor = UIColor.darkGrayColor()
         return label
